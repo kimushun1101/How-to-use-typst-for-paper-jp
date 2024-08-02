@@ -24,7 +24,7 @@
 
 #let gothic = ("MS PGothic", "Hiragino Kaku Gothic Pro", "IPAexGothic", "Noto Sans CJK JP")
 #let mincho = ("MS PMincho", "Hiragino Mincho Pro", "IPAexMincho", "Noto Serif CJK JP")
-#set text(size: 24pt, font: mincho)
+#set text(size: 24pt, font: gothic)
 #import "@preview/sourcerer:0.2.1": code
 
 // Extract slide functions
@@ -146,7 +146,7 @@ CSL ファイルで体裁も整えています．
     ),
     table.hline(),
     [見出し1], [`= Heading 1`], [#text(20pt, [*Heading 1*])],
-    [見出し2], [`== Heading 2`], [#text(16pt, [Heading 2])],
+    [見出し2], [`== Heading 2`], [#text(18pt, [Heading 2])],
     [段落区切り], [空行を挟む], [ ],
     [改行], [`\`], [ ],
     [raw テキスト], [$prime.rev$`text`$prime.rev$], [`text`],

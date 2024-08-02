@@ -22,6 +22,11 @@
 #show figure.where(kind: table): set figure.caption(position: top)
 #show strong: alert
 
+#let gothic = ("MS PGothic", "Hiragino Kaku Gothic Pro", "IPAexGothic", "Noto Sans CJK JP")
+#let mincho = ("MS PMincho", "Hiragino Mincho Pro", "IPAexMincho", "Noto Serif CJK JP")
+#set text(size: 24pt, font: mincho)
+#import "@preview/sourcerer:0.2.1": code
+
 // Extract slide functions
 #let (slide, empty-slide) = utils.slides(s)
 #show: slides
@@ -39,21 +44,19 @@
 
 == Typst
 
-LaTeX の代替として海外で Typst が流行り始めている\
+LaTeX の代替として海外で Typst が流行り始めている
 
 Typst の特徴
-- テキストファイルをコンパイルして PDF を作成（LaTeX に近い）
+- テキストファイルをコンパイルして PDF を作成
 - 環境構築が簡単
 - 文法やエラー文がわかりやすい
 - 公式ドキュメントが整備されている #footnote[https://typst.app/docs/]
+- 公式がテンプレートやパッケージを管理している #footnote[https://typst.app/universe]
+- 公式のクラウド環境もある
 - 公式 Discord があり活発
-- テンプレートやパッケージの管理がされている #footnote[https://typst.app/universe]
-
 
 == Word, LaTeX, Typst の比較
 
-// #set text(5pt)
-// #show table: set text(size: 9pt)
 #figure(
   placement: top,
   // caption: [Word, LaTeX, Typst の比較],
@@ -119,8 +122,156 @@ Typst の特徴
 文法をコピペするために，コード例 #footnote[図，表，数式，定理など] をたくさん書きました．\
 追加リクエストなどあればください．
 
-
 === 参考文献の体裁
 自動で引用順になります．
 CSL ファイルで体裁も整えています．
 引用の表記も [1] だったり，上付き 1) だったり．
+
+= 文法紹介
+
+== マークアップ
+
+マークアップ言語のように記述可能\
+
+/* 表示がそれっぽく見えるようにズルしています */
+#figure(
+  // caption: [フォントの設定],
+  table(
+    columns: 3,
+    stroke: none,
+    table.header(
+      [名称],
+      [コード例],
+      [レンダリング例],
+    ),
+    table.hline(),
+    [見出し1], [`= Heading 1`], [#text(20pt, [*Heading 1*])],
+    [見出し2], [`== Heading 2`], [#text(16pt, [Heading 2])],
+    [段落区切り], [空行を挟む], [ ],
+    [改行], [`\`], [ ],
+    [raw テキスト], [$prime.rev$`text`$prime.rev$], [`text`],
+    [箇条書きリスト], [`- item`], [ #sym.bullet item ],
+    [番号つきリスト], [`+ item`], [ 1. item ],
+    [強調（太文字）], [`*strong*`], [*strong*],
+    [強調（斜体）], [`_emphasis_`], [#text(font: "Times New Roman", [_emphasis_])],
+    [クオーテーション], [`'single'` or `"double"`], ['single' or "double"],
+    [コメントアウト], [`/* block */` or `// line`], [ ],
+  )
+)
+
+https://typst-jp.github.io/docs/reference/syntax/ を参考
+
+== 数式のコード
+
+数式番号をつけるような中央揃えの数式は，最初の`$` の後ろと閉じの`$` の前にスペースを挟み
+#code(
+  ```typ
+    $ dot(x) &= A x + B u \
+    y &= C x $ <eq:system>
+  ```
+)
+のように書き，文中に書く数式は，`$` の前後にスペースを挟まず
+#code(
+  ```typ
+    $x in RR^n$
+  ```
+)
+というように書きます．
+
+== 数式のレンダリング
+
+以下のシステムを考える．
+$ dot(x) &= A x + B u \
+ y &= C x $ <eq:system>
+ここで $x in RR^n$ は状態，$u in RR^m$ は入力，$y in RR^l$ は出力，$A in RR^(n times n)$，$B in RR^(n times m)$，および $C in RR^(l times n)$ は定数行列である．
+
+== 図のコード
+
+Typst 0.11.0 では PNG, JPEG, GIF, SVG の形式を挿入可能
+#code(
+  ```typ
+    #figure(
+      placement: bottom,
+      image("figs/quadratic.svg", width: 90%),
+      caption: [$x^2$ のグラフ],
+    ) <fig:quadratic>
+
+    #figure(
+      placement: bottom,
+      image("figs/sqrt-and-sin.png", width: 90%),
+      caption: [$sqrt(x)$ と $sin x$ のグラフ],
+    ) <fig:sqrt-sin>
+  ```
+)
+
+== 図のレンダリング
+
+#columns(2)[
+#figure(
+  placement: bottom,
+  image("figs/quadratic.svg", width: 90%),
+  caption: [$x^2$ のグラフ],
+) <fig:quadratic>
+
+#figure(
+  placement: bottom,
+  image("figs/sqrt-and-sin.png", width: 90%),
+  caption: [$sqrt(x)$ と $sin x$ のグラフ],
+) <fig:sqrt-sin>
+]
+
+== 表のコード
+
+#code(
+  ```typ
+    #figure(
+      placement: top,
+      caption: [フォントの設定],
+      table(
+        columns: 3,
+        stroke: none,
+        table.header(
+          [項目],
+          [サイズ (pt)],
+          [フォント],
+        ),
+        table.hline(),
+        [タイトル], [18], [ゴシック体],
+        [著者名], [12], [ゴシック体],
+        [章タイトル], [12], [ゴシック体],
+        [節，小節，本文], [10], [明朝体],
+        [参考文献], [9], [明朝体],
+      )
+    ) <tab:fonts>
+  ```
+)
+
+== 表のレンダリング
+#figure(
+  placement: top,
+  caption: [フォントの設定],
+  table(
+    columns: 3,
+    stroke: none,
+    table.header(
+      [項目],
+      [サイズ (pt)],
+      [フォント],
+    ),
+    table.hline(),
+    [タイトル], [18], [ゴシック体],
+    [著者名], [12], [ゴシック体],
+    [章タイトル], [12], [ゴシック体],
+    [節，小節，本文], [10], [明朝体],
+    [参考文献], [9], [明朝体],
+  )
+) <tab:fonts>
+
+== 引用
+
+引用は "\@label" と記述する．
+
+図のラベルとして `@fig:quadratic` とすれば@fig:quadratic，\
+表のラベルとして `@tab:fonts` とすれば @tab:fonts となる．
+
+数式や参考文献も同様．

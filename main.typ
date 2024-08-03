@@ -9,12 +9,13 @@
   self: s,
   title: [Typst で論文を書く],
   // subtitle: [Subtitle],
-  author: [Shunsuke Kimura \ \
-  #sym.XX : #link("https://x.com/kimushun1101")[$#sym.at$kimushun1101]\
-  GitHub : #link("https://github.com/kimushun1101")[kimushun1101]],
+  author: [Shunsuke Kimura],
   // date: datetime(year: 2024, month: 8, day: 3),
   date: datetime.today(),
-  // institution: [Institution],
+  institution: [
+    #sym.XX : #link("https://x.com/kimushun1101")[$#sym.at$kimushun1101]\
+    GitHub : #link("https://github.com/kimushun1101")[kimushun1101]
+  ],
 )
 
 // Extract methods
@@ -130,9 +131,9 @@ Typst の特徴
 
 == 学会の Typst テンプレートサンプルを作ってみた
 
+https://github.com/kimushun1101/typst-jp-conf-template
 #columns(2)[
-  #image("figs/github.png")
-  https://github.com/kimushun1101/typst-jp-conf-template \ \
+  #image("figs/github.png", width: 90%)
   以下の国内学会論文に似せた\ テンプレートを作成
   - 日本ロボット学会学術講演会#footnote[公式で Typst フォーマットが提供されました．\ #h(10mm) https://ac.rsj-web.org/2024/manuscript.html]
   - 自動制御連合講演会

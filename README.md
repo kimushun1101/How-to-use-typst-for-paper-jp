@@ -1,6 +1,6 @@
-# How-to-use-typst-jp
+# How-to-use-typst-for-paper-jp
 
-Typst の特徴と使い方，学会テンプレートに関する資料
+Typst の特徴と使い方，論文を書くときに使えるコード例をまとめた資料
 
 制御工学勉強会 第11回 (2024-08-03) で発表
 

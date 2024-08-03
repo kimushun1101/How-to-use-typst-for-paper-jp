@@ -368,6 +368,6 @@ $ dot(x) &= A x + B u \
 == このスライドについて
 
 この資料はソースコードも含めて GitHub で公開しております．\
-https://github.com/kimushun1101/How-to-use-typst-jp
+https://github.com/kimushun1101/How-to-use-typst-for-paper-jp
 
-不備やご助言などありましたら，GitHub の #link("https://github.com/kimushun1101/How-to-use-typst-jp/issues")[Issues] や #link("https://github.com/kimushun1101/How-to-use-typst-jp/pulls")[Pull requests] にいただけましたら幸いです．#footnote("正直，私に届くように言っていただければ連絡方法はなんでもよいです．私の対応も気が向いたときにやります．お互い気軽にやりましょう．")
+不備やご助言などありましたら，GitHub の #link("https://github.com/kimushun1101/How-to-use-typst-for-paper-jp/issues")[Issues] や #link("https://github.com/kimushun1101/How-to-use-typst-for-paper-jp/pulls")[Pull requests] にいただけましたら幸いです．#footnote("正直，私に届くように言っていただければ連絡方法はなんでもよいです．私の対応も気が向いたときにやります．お互い気軽にやりましょう．")
